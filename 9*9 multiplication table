@@ -1,0 +1,27 @@
+
+public static void main(String[] args) {
+        // TODO code application logic here
+       
+        for(int left=1; left<=9; left++){
+            for(int right = left; right<=9; right ++){
+                int value = left * right;
+                System.out.print(left);
+                System.out.print(" x ");
+                System.out.print(right);
+                System.out.print(" = ");
+                System.out.print(value);
+                if (value < 10 && right < 9){
+                    System.out.print(" , ");
+                }
+                else if ( right == 9){
+                    System.out.print(" ");
+                }
+                else {
+                System.out.print(", ");
+                }
+                
+                
+            }
+            System.out.println();
+            
+        }
