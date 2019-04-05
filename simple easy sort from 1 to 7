@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+        // TODO code application logic here
+        
+        int [] arr = {2,5,1,4,6,7,3};
+        // sort
+        for (int i = 0; i < arr.length; i++){
+            // set min number
+            int minIndex = i;
+            
+            // find min number
+            for (int j = i; j < arr.length; j++){
+                if (arr[j]<arr[minIndex]){
+                    minIndex = j;
+                }
+            }
+            
+            // change the place with j and the min number
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+            
+        }
+        // output
+        for (int i = 0; i < arr.length; i++ ){
+            System.out.println(arr[i]);
+            
+        }
+          
+    }
