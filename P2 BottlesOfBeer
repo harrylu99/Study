@@ -1,0 +1,15 @@
+public class BottlesOfBeer {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        for(int i=99;i>=1;i--)
+        {    
+            System.out.println(""+i+" bottles of beer on the wall, "+i+" bottles of beer. Take 1 down pass it around "+(i-1)+" bottles of beer on the wall. ");
+        }
+        
+        System.out.println("0 bottles of beer on the wall, 0 bottles of beer. Go to the store buy Seth some more 99 bottles of beer on the wall." );
+    }
+}
