@@ -1,0 +1,21 @@
+public class Quotation {
+    private String quote;
+    private String quoteAuthor;
+    
+    //To create this quote, need a String passed into the constructor
+    public Quotation(String q, String a)
+    {	quote = q;
+        quoteAuthor = a;
+    }
+    //Return the quote held in String
+    public String getQuote() 
+    {   return quote;
+    }
+    //Return the quote held in String
+    public String getQuoteAuthor() 
+    {   return quoteAuthor;
+    }
+    public String outputQuote()
+    { 	return "\""+quote+"\"\n"+ "\t-"+quoteAuthor;
+    }
+}
