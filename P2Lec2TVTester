@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package p2lab2;
+import java.util.Scanner;
+
+/**
+ * Class which simply tests the TV class and allows keyboard input
+ * from the user.
+ * spacebar to toggle power to TV
+ * < or > to change channel
+ * Q or q to quit
+ * + or - to change volume
+ * m or M to mute or unmute
+ * 0 - 9 to setChannel
+ * @author max
+ */
+public class TVTester {
+    
+    public static void main(String[] args)
+    {   //create a new instance of a TV with following informaiton
+        TV panasonic = new TV("PANASONIC/Plasma",50,162537492763211L);
+        TV lg = new TV("LG/OLED",65,234545666542L);
+        
+        boolean onPanasonic = true;
+        TV tv = panasonic;
+        //read keyboard input from console
+        Scanner scanner = new Scanner(System.in);
+        char key = 'Q';
+        
+        do
+        {   System.out.println("FIRST TV STATE:");
+            System.out.println(panasonic.toString());
+            System.out.println("\nSECOND TV STATE:");
+            System.out.println(lg.toString());
+            System.out.println("PRESS KEY ON TV TO CHANGE STATE:\n");
+            //scanner.nextLine returns a String object, instead of storing it
+            //with a variable reference we can immediatly call charAt on that
+            //object which will return a "char" for our key
+            key = scanner.nextLine().charAt(0);
+            
+            if(key == 'T' || key == 't')
+            {
+                onPanasonic = !onPanasonic;
+                if(onPanasonic)
+                {
+                    System.out.println("FIRST TV SELECTED FOR CONTROL:");
+                    tv = panasonic;
+                }
+                else
+                {
+                    System.out.println("SECOND TV SELECTED FOR CONTROL:");
+                    tv = lg;
+                }
+            }
+            else if(key == ' ')
+                tv.togglePower(); 
+            else if(tv.isTVOn())
+            {   switch(key)
+                {
+                    case '0':case '1':case '2':case '3':case '4':
+                    case '5':case '6':case '7':case '8':case '9':
+                    //set channel takes an integer so subtract int value of
+                    //character '0' from character key to get ints 0-9 
+                    tv.setChannel((int)key-'0'); 
+                    System.out.println("CHANNEL CHANGED TO "+ tv.getChannel());
+                    break;
+
+                    case '-':
+                    tv.decrementVolume();
+                    System.out.println("VOLUME DECREASD TO "+tv.getVolume());
+                    break;
+
+                    case '+':
+                    tv.incrementVolume();
+                    System.out.println("VOLUME INCREASED TO "+tv.getVolume());
+                    break;
+
+                    case '>':
+                    tv.incrementChannel();
+                    System.out.println("CHANNEL INCREASED TO "+tv.getChannel());
+                    break;
+                    
+                    case '<':
+                    tv.decrementChannel();
+                    System.out.println("CHANNEL DECREASED TO "+tv.getChannel());
+                    break;
+                    
+                    case 'M':
+                    case 'm':
+                    tv.toggleMute();
+                    System.out.println("MUTE TOGGLED, VOLUME "+tv.getVolume());
+                    break;
+                    
+                    case 'Q':
+                    case 'q':
+                    System.out.println("QUITTING TEST");
+                    break;
+                    
+                    default:
+                        System.out.println("UNKNOWN KEY");
+                }
+            } 
+        }while(key != 'q' && key != 'Q'); //keeps looping until quitted 
+    }
+}
