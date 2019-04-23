@@ -1,0 +1,96 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package p2lab2;
+import java.util.Scanner;
+
+/**
+ *  CLass that represents simple TV functions
+ * @author sehall
+ */
+public class TV 
+{   private int currentVolume;
+    private final int MAX_VOLUME = 30;
+    private final int MAX_CHANNELS = 9;
+    private boolean tvOn;
+    private boolean muted;
+    private long serialNumber;
+    private String makeAndModel;
+    private int currentChannel;
+    private int tvSize;
+    
+    public TV(String makeAndModel, int tvSize, long serialNumber)
+    {   this.makeAndModel = makeAndModel;
+        this.serialNumber = serialNumber;
+        this.tvSize = tvSize;
+        currentVolume = 10;
+        currentChannel = 1;
+        muted = false;
+        tvOn = false;
+    }
+    public void toggleMute()
+    {   if(tvOn)
+            muted = !muted;
+    } 
+    public void togglePower()
+    {   tvOn = !tvOn;
+    } 
+    public boolean isTVOn()
+    {   return tvOn;
+    }
+    public int getChannel()
+    {   return currentChannel;
+    }
+    public int getVolume()
+    {   if(muted) 
+            return 0;
+        else 
+            return currentVolume;
+    }
+    public void setChannel(int channel)
+    {
+        if(channel >=0 && channel <= MAX_CHANNELS && tvOn)
+            currentChannel = channel; 
+    }
+    public void incrementChannel()
+    {   if(tvOn)
+        {   currentChannel++;
+            if(currentChannel > MAX_CHANNELS)
+                currentChannel = 0;
+        }
+    }
+    public void decrementChannel()
+    {   if(tvOn)
+        {   currentChannel--;
+            if(currentChannel < 0)
+                currentChannel = MAX_CHANNELS;
+        }
+    }
+    public void incrementVolume()
+    {   if(tvOn)
+        {   muted = false;
+            if(currentVolume < MAX_VOLUME)
+                currentVolume++;
+        }   
+    }
+    public void decrementVolume()
+    {   if(tvOn)
+        {   
+            muted = false;
+            if(currentVolume > 0)
+                currentVolume--;
+        }   
+    }
+    public String toString()
+    {  String s = "";
+       String state = "TV IS:"+(tvOn?"[ON]\n": "[OFF]\n");
+       if(tvOn) 
+           s = "volume: " + (muted?"muted":""+currentVolume) + " on Channel: "+currentChannel;
+       String specs = makeAndModel+" of size "+tvSize+" inches.\n";
+       
+       return specs+state+s;
+    }
+    
+}
