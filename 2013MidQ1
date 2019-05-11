@@ -1,0 +1,63 @@
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+//         TODO code application logic here
+        
+//        System.out.println("Please enter a positive integer");
+//        Scanner sc = new Scanner(System.in);
+//        float i = sc.nextFloat();
+//        
+//        while (Math.round(i) != i) {
+//               System.out.println("It's not integer, enter again");
+//               System.out.println(String.valueOf(i));
+//               if (Math.round(i) == i) {
+//                   System.out.println("wfqbfwiuqbi");
+//                   break;
+//               }
+//          }
+
+                
+        int a;
+	Scanner input = new Scanner(System.in);//创建Scanner对象用于读取键盘输入
+	System.out.println("Please enter a positive integer");//提示输入
+	while(true) {							//这里true替换成input.hasNext()也行
+	try {
+		a = input.nextInt();			//如果输入的不为整数，会抛出一个InputMismatchException异常
+		break;								//如果是整数，则退出while循环
+	}catch(Exception e) {				//这里用Exception来捕获这个异常
+		System.out.println("It's not integer, enter again");
+		input.next();						//继续输入
+		}
+	}
+                
+        switch (a) {
+            case 1:
+                System.out.println("no odd numbers found");
+                break;
+            case 2:
+                System.out.println("no even numbers found");
+                break;
+            default:
+                System.out.println("The positive odd numbers which are smaller than the "+a+"");
+                for(int i=0;i<a;i++){
+                    if(i%2!=0){
+                        System.out.println(i);
+                    }                
+                }
+                System.out.println("the sum of all the even numbers which are smaller than the "+a);
+                int sum=0;
+                for(int j=0;j<a;j++){
+                    if(j%2==0){
+                        sum=sum+j;
+                    }
+                }
+                System.out.println(sum);
+                break;
+        }
+               
+    }
+}
+    
